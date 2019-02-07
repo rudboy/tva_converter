@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import taux from "./taux.json";
 
-const calcul = (montant, total) => {
-  return total - montant;
-};
-
 class App extends Component {
   state = {
     montant: "",
@@ -16,7 +12,6 @@ class App extends Component {
   handleChange = event => {
     let result1 = 0;
     let result2 = 0;
-    let total = 0;
 
     const name = event.target.name;
     const value = event.target.value;
@@ -43,7 +38,7 @@ class App extends Component {
           Number(this.state.ttc) -
           Number(this.state.ttc) * Number(this.state.tva);
         this.setState({
-          montant: result2
+          montant: result2.toFixed(2)
         });
       });
     }
@@ -53,12 +48,12 @@ class App extends Component {
           Number(this.state.montant) +
           Number(this.state.montant) * Number(this.state.tva);
         this.setState({
-          ttc: result1
+          ttc: result1.toFixed(2)
         });
       });
     }
     this.setState(obj, () => {
-      total = console.log();
+      console.log();
     });
   };
 
@@ -118,7 +113,7 @@ class App extends Component {
                 type="text"
                 name="totaltva"
                 id="totaltva"
-                value={this.state.ttc - this.state.montant}
+                value={(this.state.ttc - this.state.montant).toFixed(2)}
                 onChange={this.handleChange}
               />
             </div>
